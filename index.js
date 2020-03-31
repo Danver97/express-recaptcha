@@ -57,10 +57,15 @@ async function middleware(req, res, next) {
     next(err);
 }
 
+
+middleware.verifyCaptchaResponse = verifyCaptchaResponse;
+middleware.RecaptchaError = RecaptchaError;
+
 /**
  * @param {object} options 
  * @param {object} [options.siteSecret] 
  * @param {object} [options.captchaProperty] 
+ * @returns {function} The express-compatible middleware
  */
 module.exports = function (options = {}) {
     siteSecret = options.siteSecret || SITE_SECRET_FAKE;

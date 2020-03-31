@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const querystring = require('querystring');
 
 const SITE_SECRET_FAKE = "6LfeHx4UAAAAAFWXGh_xcL0B8vVcXnhn9q_SnQ1b"; // localhost validation only
@@ -12,7 +12,7 @@ let captchaProperty;
 
 function post(url, data) {
     return new Promise((resolve, reject) => {
-        const req = http.request(url, {
+        const req = https.request(url, {
             method: 'POST'
         }, res => {
             let body = '';
@@ -38,9 +38,10 @@ function post(url, data) {
 async function verifyCaptchaResponse(gRecaptchaResponse) {
     const verifyRequestParams = {
         response: gRecaptchaResponse,
-        secret: '',
+        secret: siteSecret,
     };
-    const response = await post(`${SITE_VERIFY_URL}?${querystring.stringify(verifyRequestParams)}`);
+    const paramString = querystring.stringify(verifyRequestParams);
+    const response = await post(`${SITE_VERIFY_URL}?${paramString}`);
     return response;
 }
 

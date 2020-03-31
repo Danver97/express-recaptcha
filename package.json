@@ -1,6 +1,6 @@
 {
   "name": "@danver97/express-recaptcha",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express middleware for reCAPTCHA response validation",
   "homepage": "https://github.com/Danver97/express-recaptcha#readme",
   "main": "index.js",

@@ -12,13 +12,18 @@ app.set('view engine', 'ejs');
 const recaptchaMiddleware = recaptcha({ siteSecret: process.env.SITE_SECRET });
 
 app.get('/', async (req, res) => {
-    res.render('index.ejs', { siteKey: process.env.SITE_KEY, success: false });
+    res.render('index.ejs', { siteKey: process.env.SITE_KEY, success: undefined });
     // res.json({ message: '/endpoint' });
 });
 
 app.post('/endpoint', recaptchaMiddleware, (req, res) => {
-    res.json({ message: '/endpoint' });
-    // res.render('index.ejs', { siteKey: process.env.SITE_KEY });
+    // res.json({ message: '/endpoint' });
+    res.render('index.ejs', { siteKey: process.env.SITE_KEY, success: true });
 });
+
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.render('index.ejs', { siteKey: process.env.SITE_KEY, success: false });
+})
 
 app.listen(3000, () => console.log('Listening on 3000...'));

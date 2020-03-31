@@ -25,9 +25,9 @@
   </head>
   <body>
     <h3>Give us feedback on our new webpage!</h3>
-    <% if (success) { %>
+    <% if (success === true) { %>
       <div class='status-message'>Thanks for the feedback!</div>
-    <% } else { %>
+    <% } else if (success === false) { %>
       <div class='status-message'>There was an error.</div>
     <% }%>
     <form id='demo-form' action='/endpoint' method='POST'>

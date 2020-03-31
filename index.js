@@ -1,5 +1,6 @@
 const https = require('https');
 const querystring = require('querystring');
+const RecaptchaError = require('./recaptcha.error');
 
 const SITE_SECRET_FAKE = "6LfeHx4UAAAAAFWXGh_xcL0B8vVcXnhn9q_SnQ1b"; // localhost validation only
 const SITE_VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
@@ -50,11 +51,10 @@ async function middleware(req, res, next) {
 
     const response = await verifyCaptchaResponse(gRecaptchaResponse);
 
-    if (response.success) {
-        next();
-        return;
-    }
-    throw new Error();
+    if (response.success)
+        return next();
+    const err = RecaptchaError.fromCode(response['error-codes'][0]);
+    next(err);
 }
 
 /**

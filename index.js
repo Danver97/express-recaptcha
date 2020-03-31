@@ -35,7 +35,18 @@ function post(url, data) {
         req.end();
     });
 }
-
+/**
+ * @typedef {Object} Response
+ * @property {boolean} success The X Coordinate
+ * @property {string} challenge_ts timestamp of the challenge load
+ * @property {string} hostname the hostname of the site where the reCAPTCHA was solved
+ * @property {string[]} error-codes 
+ */
+/**
+ * Issues a validation request towars the reCAPTCHA APIs, returning the json response.
+ * @param {string} gRecaptchaResponse The reCAPTCHA challenge response
+ * @returns {Promise<Response>}
+ */
 async function verifyCaptchaResponse(gRecaptchaResponse) {
     const verifyRequestParams = {
         response: gRecaptchaResponse,

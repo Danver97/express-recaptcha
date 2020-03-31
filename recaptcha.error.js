@@ -29,6 +29,12 @@ const errors = {
 
 class RecaptchaError extends ExtendableError {
 
+    /**
+     * Parse a code string error returning a RecaptchaError instance.
+     * @param {string} code Code error returned by the API call
+     * @param {string} msg The message you want to give to the error. If not provided a default one will be used.
+     * @returns {RecaptchaError}
+     */
     static fromCode(code, msg) {
         for (let k of Object.keys(errors)) {
             const err = errors[k];

@@ -1,6 +1,7 @@
-# reCAPTCHA.js
+# Express Recaptcha
 
-This library has been developed to help you validate reCAPTCHA responses in Node.js.
+This library has been developed to help you validate reCAPTCHA responses in Node.js.  
+It is compatible with Express.js but allows you to build your verification logic with ease.
 
 ## Install
 ```

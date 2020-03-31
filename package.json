@@ -1,5 +1,5 @@
 {
-  "name": "express-recaptcha",
+  "name": "@danver97/express-recaptcha",
   "version": "1.0.0",
   "description": "Express middleware for reCAPTCHA response validation",
   "main": "index.js",
